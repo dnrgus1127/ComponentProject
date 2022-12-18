@@ -2,7 +2,7 @@ import Button from "../component/Button";
 
 const A = <p>P 태그로 만들어진 것입니다.</p>;
 const B = <h1>H1 태그로 만들어진 것입니다.</h1>;
-const button = <Button />;
+const button = <Button onClick={(e) => console.log(e.target)} />;
 
 export const componentArr = [
   {

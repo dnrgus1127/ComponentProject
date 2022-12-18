@@ -5,7 +5,7 @@ import ComponentSelector from "./component/ComponentSelector";
 import { GlobalStyle } from "./styles/GlobalStyle";
 import { darkTheme, lightTheme } from "./styles/theme";
 import { useState } from "react";
-import Slider from "./component/Slider";
+import ControllWrap from "./component/ControllWrap";
 
 const ShowComponent = styled.div`
   width: 60%;
@@ -14,17 +14,17 @@ const ShowComponent = styled.div`
 `;
 const Controller = styled.div`
   width: 40%;
+  padding: 24px 24px;
 `;
 
-const ControllWrap = styled.div`
-  width: 100%;
-  height: 100%;
-`;
 function App() {
   const LocalTheme = window.localStorage.getItem("theme") || "dark";
   const [theme, setTheme] = useState(LocalTheme);
   const [componentSetting, setComponentSetting] = useState({
-    fontSize: "12px",
+    fontSize: 12,
+    test: "123",
+    width: "3px",
+    height: 10,
   });
   const toggleTheme = () => {
     setTheme(() => {
@@ -42,14 +42,11 @@ function App() {
             <ComponentSelector setting={componentSetting} />
           </ShowComponent>
           <Controller>
-            <ControllWrap>
-              <p>Setting : {componentSetting.fontSize}</p>
-              <button onClick={toggleTheme}>색상 변경</button>
-              <Slider
-                currentSetting={componentSetting}
-                valueHandle={setComponentSetting}
-              />
-            </ControllWrap>
+            <ControllWrap
+              toggleTheme={toggleTheme}
+              setSetting={setComponentSetting}
+              setting={componentSetting}
+            />
           </Controller>
         </div>
       </div>

@@ -11,6 +11,6 @@ const Container = styled.button`
   }
 `;
 
-export default function Button() {
-  return <Container>Button</Container>;
+export default function Button({ onClick }) {
+  return <Container onClick={onClick}>Button</Container>;
 }

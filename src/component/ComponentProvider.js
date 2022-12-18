@@ -3,18 +3,24 @@ import styled from "styled-components";
 import { componentArr } from "../data/componentArr";
 
 const Container = styled.div`
-  width: 50%;
-  height: 10%;
+  width: ${(props) => `${props.width}px`};
+  height: ${(props) => `${props.height}px`};
   margin: 0 auto;
   * {
-    font-size: ${(props) => props.fontSize};
+    font-size: ${(props) => `${props.fontSize}px`};
+    border: 1px solid ${({ theme }) => theme.border};
+    color: ${({ theme }) => theme.textColor};
   }
 `;
 
 export default function ComponentProvider({ ComponentCode, setting }) {
   const ComArr = componentArr;
   return (
-    <Container fontSize={setting.fontSize}>
+    <Container
+      width={setting.width}
+      height={setting.height}
+      fontSize={setting.fontSize}
+    >
       {ComArr[ComponentCode].component}
     </Container>
   );
