@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { componentArr } from "../data/componentArr";
+import { PickedComponent } from "./PickedComponent";
 
 const Container = styled.div`
   width: ${(props) => `${props.width}px`};
@@ -8,20 +8,24 @@ const Container = styled.div`
   margin: 0 auto;
   * {
     font-size: ${(props) => `${props.fontSize}px`};
-    border: 1px solid ${({ theme }) => theme.border}; 
-    color: ${({ theme }) => theme.textColor};
+    border: 1px solid ${({ theme }) => theme.border};
+    /* color: ${({ theme }) => theme.textColor}; */
+    color: ${(props) => props.color};
   }
 `;
 
 export default function ComponentProvider({ ComponentCode, setting }) {
-  const ComArr = componentArr;
   return (
     <Container
       width={setting.width}
       height={setting.height}
       fontSize={setting.fontSize}
+      color={setting.textColor}
     >
-      {ComArr[ComponentCode].component}
+      <PickedComponent
+        bgColor={setting.bgColor}
+        pickCode={ComponentCode}
+      ></PickedComponent>
     </Container>
   );
 }

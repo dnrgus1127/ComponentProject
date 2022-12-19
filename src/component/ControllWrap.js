@@ -42,7 +42,12 @@ export default function ControllWrap({ setting, setSetting, toggleTheme }) {
         unit="px"
         max={800}
       ></Slider>
-      <ColorPicker/>
+      <ColorPicker
+        setting={setting}
+        setSetting={setSetting}
+        objKey="textColor"
+      />
+      <ColorPicker setting={setting} setSetting={setSetting} objKey="bgColor" />
     </Container>
   );
 }

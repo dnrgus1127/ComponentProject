@@ -25,6 +25,7 @@ function App() {
     test: "123",
     width: "3px",
     height: 10,
+    color: "#000000",
   });
   const toggleTheme = () => {
     setTheme(() => {

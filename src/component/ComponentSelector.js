@@ -21,7 +21,7 @@ const ComponentWrapper = styled.div`
 
 export default function ComponentSelector({ setting }) {
   const [currentCode, setCurrentCode] = useState(0);
-  const comNameArr = componentArr.map((item) => item.componentName);
+  const comNameArr = componentArr.map((item) => item);
   return (
     <Container>
       <Selector NameArr={comNameArr} setValue={setCurrentCode} />

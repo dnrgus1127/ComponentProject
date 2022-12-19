@@ -29,7 +29,7 @@ export default function Selector({ NameArr, setValue }) {
         === 선택 ===
       </Option>
       {NameArr.map((item, idx) => (
-        <Option key={idx} value={idx}>
+        <Option key={idx} value={item}>
           {item}
         </Option>
       ))}
