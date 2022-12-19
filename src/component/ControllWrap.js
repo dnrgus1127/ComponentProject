@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import ColorPicker from "./ColorPicker";
 import Slider from "./Slider";
 
 const Container = styled.div`
@@ -41,6 +42,7 @@ export default function ControllWrap({ setting, setSetting, toggleTheme }) {
         unit="px"
         max={800}
       ></Slider>
+      <ColorPicker/>
     </Container>
   );
 }

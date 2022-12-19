@@ -8,7 +8,7 @@ const Container = styled.div`
   margin: 0 auto;
   * {
     font-size: ${(props) => `${props.fontSize}px`};
-    border: 1px solid ${({ theme }) => theme.border};
+    border: 1px solid ${({ theme }) => theme.border}; 
     color: ${({ theme }) => theme.textColor};
   }
 `;
