@@ -21,10 +21,10 @@ function App() {
   const LocalTheme = window.localStorage.getItem("theme") || "dark";
   const [theme, setTheme] = useState(LocalTheme);
   const [componentSetting, setComponentSetting] = useState({
-    fontSize: 12,
+    fontSize: 14,
     test: "123",
-    width: "3px",
-    height: 10,
+    width: 240,
+    height: 40,
     color: "#000000",
   });
   const toggleTheme = () => {
