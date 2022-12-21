@@ -1,12 +1,10 @@
 import React from "react";
-import { useSetting } from "../CustomHook.js/SettingProvider";
 import Button from "./Button";
 
 export function PickedComponent({ pickCode }) {
-  const { bgColor } = useSetting();
   switch (pickCode) {
     case "Button":
-      return <Button bgColor={bgColor} />;
+      return <Button />;
     case "A":
       return <p>가나다라마바사</p>;
 

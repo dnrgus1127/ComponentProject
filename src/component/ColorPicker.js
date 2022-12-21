@@ -51,9 +51,7 @@ export default function ColorPicker({ name, value, setValue }) {
           type="text"
           placeholder="#000000"
           onChange={(e) => {
-            if (e.target.value.length === 7) {
-              setValue(e.target.value);
-            }
+            setValue(e.target.value);
           }}
         />
         <input

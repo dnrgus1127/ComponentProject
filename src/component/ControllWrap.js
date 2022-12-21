@@ -31,7 +31,6 @@ export default function ControllWrap({ toggleTheme }) {
   } = useSetting();
   return (
     <Container>
-      {" "}
       <ColorBtn onClick={toggleTheme}>색상 변경</ColorBtn>
       <Slider
         name="폰트"

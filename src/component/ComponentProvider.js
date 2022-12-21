@@ -3,15 +3,15 @@ import styled from "styled-components";
 import { useSetting } from "../CustomHook.js/SettingProvider";
 import { PickedComponent } from "./PickedComponent";
 
-const Container = styled.div`
-  width: ${(props) => `${props.width}px`};
-  height: ${(props) => `${props.height}px`};
+const Container = styled.div.attrs((props) => ({
+  style: {
+    width: `${props.width}px`,
+    height: `${props.height}px`,
+  },
+}))`
   margin: 0 auto;
   * {
-    font-size: ${(props) => `${props.fontSize}px`};
     border: 1px solid ${({ theme }) => theme.border};
-    /* color: ${({ theme }) => theme.textColor}; */
-    color: ${(props) => props.color};
   }
 `;
 
