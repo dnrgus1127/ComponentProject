@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useSetting } from "../CustomHook.js/SettingProvider";
 import { PickedComponent } from "./PickedComponent";
 
 const Container = styled.div`
@@ -14,16 +15,18 @@ const Container = styled.div`
   }
 `;
 
-export default function ComponentProvider({ ComponentCode, setting }) {
+export default function ComponentProvider({ ComponentCode }) {
+  const { width, height, fontSize, textColor, bgColor } = useSetting();
+
   return (
     <Container
-      width={setting.width}
-      height={setting.height}
-      fontSize={setting.fontSize}
-      color={setting.textColor}
+      width={width}
+      height={height}
+      fontSize={fontSize}
+      color={textColor}
     >
       <PickedComponent
-        bgColor={setting.bgColor}
+        bgColor={bgColor}
         pickCode={ComponentCode}
       ></PickedComponent>
     </Container>

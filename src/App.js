@@ -6,6 +6,7 @@ import { GlobalStyle } from "./styles/GlobalStyle";
 import { darkTheme, lightTheme } from "./styles/theme";
 import { useState } from "react";
 import ControllWrap from "./component/ControllWrap";
+import SettingProvider from "./CustomHook.js/SettingProvider";
 
 const ShowComponent = styled.div`
   width: 60%;
@@ -20,13 +21,7 @@ const Controller = styled.div`
 function App() {
   const LocalTheme = window.localStorage.getItem("theme") || "dark";
   const [theme, setTheme] = useState(LocalTheme);
-  const [componentSetting, setComponentSetting] = useState({
-    fontSize: 14,
-    test: "123",
-    width: 240,
-    height: 40,
-    color: "#000000",
-  });
+
   const toggleTheme = () => {
     setTheme(() => {
       let themeTmp = theme === "dark" ? "light" : "dark";
@@ -39,16 +34,14 @@ function App() {
       <GlobalStyle />
       <div className="App">
         <div style={{ display: "flex" }}>
-          <ShowComponent>
-            <ComponentSelector setting={componentSetting} />
-          </ShowComponent>
-          <Controller>
-            <ControllWrap
-              toggleTheme={toggleTheme}
-              setSetting={setComponentSetting}
-              setting={componentSetting}
-            />
-          </Controller>
+          <SettingProvider>
+            <ShowComponent>
+              <ComponentSelector />
+            </ShowComponent>
+            <Controller>
+              <ControllWrap toggleTheme={toggleTheme} />
+            </Controller>
+          </SettingProvider>
         </div>
       </div>
     </ThemeProvider>

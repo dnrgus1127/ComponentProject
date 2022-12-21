@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useSetting } from "../CustomHook.js/SettingProvider";
 import ColorPicker from "./ColorPicker";
 import Slider from "./Slider";
 
@@ -15,39 +16,47 @@ const ColorBtn = styled.button`
   border: 1px solid ${({ theme }) => theme.border};
 `;
 
-export default function ControllWrap({ setting, setSetting, toggleTheme }) {
+export default function ControllWrap({ toggleTheme }) {
+  const {
+    height,
+    width,
+    fontSize,
+    setHeight,
+    setWidth,
+    setFontSize,
+    textColor,
+    bgColor,
+    setTextColor,
+    setBgColor,
+  } = useSetting();
   return (
     <Container>
       {" "}
       <ColorBtn onClick={toggleTheme}>색상 변경</ColorBtn>
       <Slider
-        currentSetting={setting}
-        valueHandle={setSetting}
         name="폰트"
         objKey="fontSize"
+        value={fontSize}
+        setValue={setFontSize}
       />
       <Slider
-        currentSetting={setting}
-        valueHandle={setSetting}
         name="가로길이(Width)"
         objKey="width"
         unit="px"
         max={800}
+        value={height}
+        setValue={setHeight}
       ></Slider>
       <Slider
-        currentSetting={setting}
-        valueHandle={setSetting}
         name="세로길이(Height)"
         objKey="height"
         unit="px"
         max={800}
+        value={width}
+        setValue={setWidth}
       ></Slider>
-      <ColorPicker
-        setting={setting}
-        setSetting={setSetting}
-        objKey="textColor"
-      />
-      <ColorPicker setting={setting} setSetting={setSetting} objKey="bgColor" />
+      <ColorPicker value={textColor} setValue={setTextColor} name="TextColor" />
+      <ColorPicker value={bgColor} setValue={setBgColor} name="BgColor" />
     </Container>
   );
 }

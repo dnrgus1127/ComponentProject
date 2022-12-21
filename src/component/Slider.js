@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -26,37 +26,26 @@ const Container = styled.div`
   }
 `;
 
-export default function Slider({
-  currentSetting,
-  valueHandle,
-  objKey,
-  unit = "px",
-  name,
-  max,
-}) {
-  const filedRef = useRef();
-  let obj = { ...currentSetting };
+export default function Slider({ value, setValue, unit = "px", name, max }) {
   return (
     <Container>
       <p>{name}</p>
       <div className="controller">
         <input
-          ref={filedRef}
+          value={value}
           className="inputFiled"
           onChange={(e) => {
-            obj[objKey] = `${e.target.value}`;
-            valueHandle(obj);
+            setValue(e.target.value);
           }}
         ></input>
         <p className="unit">{unit}</p>
         <input
           type="range"
           onChange={(e) => {
-            obj[objKey] = e.target.value;
-            valueHandle(obj);
-            filedRef.current.value = e.target.value;
+            setValue(e.target.value);
           }}
           min={1}
+          value={value}
           max={max}
         ></input>
       </div>

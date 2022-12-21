@@ -19,14 +19,14 @@ const ComponentWrapper = styled.div`
   padding: calc(80% * 0.01);
 `;
 
-export default function ComponentSelector({ setting }) {
+export default function ComponentSelector() {
   const [currentCode, setCurrentCode] = useState(0);
   const comNameArr = componentArr.map((item) => item);
   return (
     <Container>
       <Selector NameArr={comNameArr} setValue={setCurrentCode} />
       <ComponentWrapper>
-        <ComponentProvider setting={setting} ComponentCode={currentCode} />
+        <ComponentProvider ComponentCode={currentCode} />
       </ComponentWrapper>
       <ComponentLog />
     </Container>

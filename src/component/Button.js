@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useSetting } from "../CustomHook.js/SettingProvider";
 
 const Container = styled.button`
   width: 100%;
@@ -11,9 +12,10 @@ const Container = styled.button`
   }
 `;
 
-export default function Button({ onClick, bgColor }) {
+export default function Button() {
+  const { bgColor } = useSetting();
   return (
-    <Container bg={bgColor} onClick={onClick}>
+    <Container bg={bgColor} onClick={() => {}}>
       Button
     </Container>
   );

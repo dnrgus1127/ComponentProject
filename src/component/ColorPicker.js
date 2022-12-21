@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -10,7 +10,6 @@ const Container = styled.div`
     border: none;
     width: 48px;
     background-color: ${({ theme }) => theme.inputColor};
-
   }
   input[type="text"] {
     width: 25%;
@@ -20,7 +19,6 @@ const Container = styled.div`
     border: 1px solid ${({ theme }) => theme.border};
     border-radius: 4px;
     color: ${({ theme }) => theme.textColor};
-    
   }
   input {
     height: 24px;
@@ -35,44 +33,36 @@ const Container = styled.div`
   }
   Button {
     width: 80px;
-    border : 1px solid ${({theme})=> theme.border};
+    border: 1px solid ${({ theme }) => theme.border};
     border-radius: 4px;
-    background-color : ${({theme}) => theme.inputColor};
-    color : ${({theme})=> theme.textColor};
-    height : 100%;
+    background-color: ${({ theme }) => theme.inputColor};
+    color: ${({ theme }) => theme.textColor};
+    height: 100%;
   }
 `;
 
-export default function ColorPicker({ setting, setSetting, objKey }) {
-  const obj = setting;
-  const refColor = useRef();
-  const refInput = useRef();
+export default function ColorPicker({ name, value, setValue }) {
   return (
     <Container>
-      <p>{objKey}</p>
+      <p>{name}</p>
       <div className="flex">
         <input
-          ref={refInput}
+          value={value}
           type="text"
           placeholder="#000000"
           onChange={(e) => {
             if (e.target.value.length === 7) {
-              refColor.current.value = e.target.value;
+              setValue(e.target.value);
             }
           }}
         />
         <input
-          ref={refColor}
           type="color"
+          value={value}
           onChange={(e) => {
-            refInput.current.value = e.target.value;
-     
+            setValue(e.target.value);
           }}
         />
-        <button onClick={()=>{
-                   obj[objKey] = refColor.current.value;
-                   setSetting({ ...obj });
-        }}>적용</button>
       </div>
     </Container>
   );
