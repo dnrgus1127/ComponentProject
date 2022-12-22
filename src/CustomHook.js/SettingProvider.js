@@ -6,9 +6,9 @@ export const useSetting = () => useContext(ColorContext);
 export default function SettingProvider({ children }) {
   const [textColor, setTextColor] = useState("#000000");
   const [bgColor, setBgColor] = useState("#ffffff");
-  const [fontSize, setFontSize] = useState(14);
+  const [fontSize, setFontSize] = useState(12);
   const [height, setHeight] = useState(40);
-  const [width, setWidth] = useState(240);
+  const [width, setWidth] = useState(400);
 
   return (
     <ColorContext.Provider

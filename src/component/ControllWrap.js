@@ -33,29 +33,30 @@ export default function ControllWrap({ toggleTheme }) {
     <Container>
       <ColorBtn onClick={toggleTheme}>색상 변경</ColorBtn>
       <Slider
-        name="폰트"
-        objKey="fontSize"
+        max={100}
+        name='폰트'
+        objKey='fontSize'
         value={fontSize}
         setValue={setFontSize}
       />
       <Slider
-        name="가로길이(Width)"
-        objKey="width"
-        unit="px"
-        max={800}
-        value={height}
-        setValue={setHeight}
-      ></Slider>
-      <Slider
-        name="세로길이(Height)"
-        objKey="height"
-        unit="px"
+        name='가로길이(Width)'
+        objKey='width'
+        unit='px'
         max={800}
         value={width}
         setValue={setWidth}
       ></Slider>
-      <ColorPicker value={textColor} setValue={setTextColor} name="TextColor" />
-      <ColorPicker value={bgColor} setValue={setBgColor} name="BgColor" />
+      <Slider
+        name='세로길이(Height)'
+        objKey='height'
+        unit='px'
+        max={800}
+        value={height}
+        setValue={setHeight}
+      ></Slider>
+      <ColorPicker value={textColor} setValue={setTextColor} name='TextColor' />
+      <ColorPicker value={bgColor} setValue={setBgColor} name='BgColor' />
     </Container>
   );
 }

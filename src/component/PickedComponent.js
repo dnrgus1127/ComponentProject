@@ -1,14 +1,14 @@
 import React from "react";
-import Button from "./Button";
+import Accordion from "./CustomComponents/Accordion";
+import Button from "./CustomComponents/Button";
 
 export function PickedComponent({ pickCode }) {
   switch (pickCode) {
     case "Button":
       return <Button />;
-    case "A":
-      return <p>가나다라마바사</p>;
-
+    case "Accordion":
+      return <Accordion />;
     default:
-      return <h1>이 곳에 엘리먼트가 표시됩니다.</h1>;
+      return <h2>이 곳에 엘리먼트가 표시됩니다.</h2>;
   }
 }
