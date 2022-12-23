@@ -6,6 +6,7 @@ export default function Accordion() {
   const { fontSize } = useSetting();
   const contentRef = useRef();
   const wrapRef = useRef();
+  
   return (
     <Container fontSize={fontSize}>
       <Panel>
@@ -42,6 +43,7 @@ const Panel = styled.div`
   & > p {
     color: white;
   }
+  padding: 4px 4px;
 `;
 
 const SectionWrap = styled.div`
