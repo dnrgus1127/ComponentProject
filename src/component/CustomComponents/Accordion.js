@@ -1,12 +1,19 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { useSetting } from "../../CustomHook.js/SettingProvider";
+
+// * styled-component is under the function component
 
 export default function Accordion() {
   const { fontSize } = useSetting();
   const contentRef = useRef();
   const wrapRef = useRef();
-  
+  useEffect(() => {
+    if (wrapRef.current.clientHeight !== 0) {
+      wrapRef.current.style.height = `${contentRef.current.offsetHeight}px`;
+      console.log(contentRef.current.offsetHeight);
+    }
+  });
   return (
     <Container fontSize={fontSize}>
       <Panel>
@@ -16,7 +23,10 @@ export default function Accordion() {
             if (wrapRef.current.clientHeight > 0) {
               wrapRef.current.style.height = 0;
             } else {
-              wrapRef.current.style.height = `${contentRef.current.clientHeight}px`;
+              wrapRef.current.style.height = `${
+                contentRef.current.offsetHeight +
+                contentRef.current.clientWidth * 0.1
+              }px`;
             }
           }}
         >
@@ -24,8 +34,14 @@ export default function Accordion() {
         </button>
       </Panel>
 
-      <SectionWrap ref={wrapRef}>
-        <Section ref={contentRef}>내용</Section>
+      <SectionWrap ref={wrapRef} fontSize={fontSize}>
+        <Content ref={contentRef}>
+          <Section>내용</Section>
+          <Section>내용</Section>
+          <Section>내용</Section>
+          <Section>내용</Section>
+          <Section>내용</Section>
+        </Content>
       </SectionWrap>
       {/* <Section>content</Section>
       <Section>content</Section>
@@ -33,6 +49,18 @@ export default function Accordion() {
     </Container>
   );
 }
+
+const Section = styled.div`
+  width: 100%;
+  background-color: #888888;
+  border-radius: 4px;
+  color: lightgrey;
+  font-size: inherit;
+  padding: 2% 2%;
+  margin: 1% 0px;
+`;
+
+const Content = styled.div``;
 
 const Panel = styled.div`
   width: 100%;
@@ -43,22 +71,16 @@ const Panel = styled.div`
   & > p {
     color: white;
   }
-  padding: 4px 4px;
+  padding: 2% 2%;
 `;
 
-const SectionWrap = styled.div`
+const SectionWrap = styled.div.attrs((props) => ({
+  style: { fontSize: `${props.fontSize * 0.75}px` },
+}))`
   width: 100%;
   height: 0px;
   overflow: hidden;
-  margin: 4px 0px;
-  transition: all 0.2s ease-in-out;
-`;
-
-const Section = styled.div`
-  width: 100%;
-  background-color: #888888;
-  border-radius: 4px;
-  color: lightgrey;
+  transition: all 0.5s ease;
 `;
 
 const Container = styled.div.attrs((props) => ({

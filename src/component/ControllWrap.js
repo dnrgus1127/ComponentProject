@@ -51,7 +51,7 @@ export default function ControllWrap({ toggleTheme }) {
         name='세로길이(Height)'
         objKey='height'
         unit='px'
-        max={800}
+        max={1200}
         value={height}
         setValue={setHeight}
       ></Slider>

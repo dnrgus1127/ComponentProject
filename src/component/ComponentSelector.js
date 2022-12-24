@@ -17,6 +17,21 @@ const ComponentWrapper = styled.div`
   margin: auto;
   border: 0.5px solid ${({ theme }) => theme.border};
   padding: calc(80% * 0.01);
+  overflow: auto;
+  &::-webkit-scrollbar {
+    width: 2px; /* 스크롤바의 너비 */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    height: 20%; /* 스크롤바의 길이 */
+    background: ${({ theme }) => theme.textColor}; /* 스크롤바의 색상 */
+
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: ${({ theme }) => theme.inputColor}; /*스크롤바 뒷 배경 색상*/
+  }
 `;
 
 export default function ComponentSelector() {
