@@ -33,6 +33,7 @@ export default function ControllWrap({ toggleTheme }) {
     <Container>
       <ColorBtn onClick={toggleTheme}>색상 변경</ColorBtn>
       <Slider
+        min={12}
         max={100}
         name='폰트'
         objKey='fontSize'

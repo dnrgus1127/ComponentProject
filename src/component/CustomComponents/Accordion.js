@@ -1,37 +1,47 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { useSetting } from "../../CustomHook.js/SettingProvider";
+import { IoIosArrowDropdownCircle } from "react-icons/io";
 
 // * styled-component is under the function component
 
 export default function Accordion() {
-  const { fontSize } = useSetting();
+  const { fontSize, bgColor, textColor } = useSetting();
+  const [expansionState, setExpansionState] = useState(false);
   const contentRef = useRef();
   const wrapRef = useRef();
+
   useEffect(() => {
-    if (wrapRef.current.clientHeight !== 0) {
-      wrapRef.current.style.height = `${contentRef.current.offsetHeight}px`;
-      console.log(contentRef.current.offsetHeight);
+    if (expansionState) {
+      wrapRef.current.style.height = `${contentRef.current.clientHeight * 2}px`;
+    } else {
+      wrapRef.current.style.height = 0;
     }
   });
+
   return (
-    <Container fontSize={fontSize}>
-      <Panel>
+    <Container fontSize={fontSize} textColor={textColor}>
+      <Panel bgColor={bgColor}>
         <p>제목</p>
-        <button
+        <ExpansionIcon
           onClick={() => {
-            if (wrapRef.current.clientHeight > 0) {
-              wrapRef.current.style.height = 0;
+            if (expansionState) {
+              setExpansionState(false);
             } else {
-              wrapRef.current.style.height = `${
-                contentRef.current.offsetHeight +
-                contentRef.current.clientWidth * 0.1
-              }px`;
+              setExpansionState(true);
             }
           }}
         >
-          버튼
-        </button>
+          <IoIosArrowDropdownCircle
+            style={
+              expansionState
+                ? { transform: "rotate(-180deg)", transition: "0.3s all ease" }
+                : { transition: "0.3s all ease" }
+            }
+            color='white'
+            size={fontSize > 14 ? fontSize : 14}
+          />
+        </ExpansionIcon>
       </Panel>
 
       <SectionWrap ref={wrapRef} fontSize={fontSize}>
@@ -50,28 +60,42 @@ export default function Accordion() {
   );
 }
 
+const ExpansionIcon = styled.button`
+  border: none;
+  background: none;
+  transition: 1s all ease;
+  &:hover {
+    scale: 1.5;
+  }
+`;
+
 const Section = styled.div`
   width: 100%;
   background-color: #888888;
-  border-radius: 4px;
+  border-radius: 8px;
   color: lightgrey;
   font-size: inherit;
-  padding: 2% 2%;
+  padding: 2% 4%;
   margin: 1% 0px;
+  &:hover {
+    background-color: grey;
+  }
 `;
 
 const Content = styled.div``;
 
-const Panel = styled.div`
+const Panel = styled.div.attrs((props) => ({
+  style: { backgroundColor: `${props.bgColor}` },
+}))`
   width: 100%;
   display: flex;
   justify-content: space-between;
   background-color: #555555;
-  border-radius: 4px;
+  border-radius: 8px;
   & > p {
     color: white;
   }
-  padding: 2% 2%;
+  padding: 2% 4%;
 `;
 
 const SectionWrap = styled.div.attrs((props) => ({
@@ -84,7 +108,7 @@ const SectionWrap = styled.div.attrs((props) => ({
 `;
 
 const Container = styled.div.attrs((props) => ({
-  style: { fontSize: `${props.fontSize}px` },
+  style: { fontSize: `${props.fontSize}px`, color: props.textColor },
 }))`
   width: 100%;
   height: 100%;

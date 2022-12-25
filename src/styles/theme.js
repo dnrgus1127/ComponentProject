@@ -3,7 +3,7 @@ const commonTheme = {
 };
 
 export const lightTheme = {
-  bgColor: "#F8F7F4",
+  bgColor: "#e1dcd9",
   textColor: "black",
   ...commonTheme,
 };

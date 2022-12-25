@@ -26,25 +26,32 @@ const Container = styled.div`
   }
 `;
 
-export default function Slider({ value, setValue, unit = "px", name, max }) {
+export default function Slider({
+  value,
+  setValue,
+  unit = "px",
+  name,
+  min,
+  max,
+}) {
   return (
     <Container>
       <p>{name}</p>
-      <div className="controller">
+      <div className='controller'>
         <input
           value={value}
-          className="inputFiled"
+          className='inputFiled'
           onChange={(e) => {
             setValue(e.target.value);
           }}
         ></input>
-        <p className="unit">{unit}</p>
+        <p className='unit'>{unit}</p>
         <input
-          type="range"
+          type='range'
           onChange={(e) => {
             setValue(e.target.value);
           }}
-          min={1}
+          min={min}
           value={value}
           max={max}
         ></input>
