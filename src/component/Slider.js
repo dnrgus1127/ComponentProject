@@ -17,7 +17,7 @@ const Container = styled.div`
     background-color: ${({ theme }) => theme.inputColor};
     border: 1px solid ${({ theme }) => theme.border};
     border-radius: 4px;
-    color: white;
+    color: ${({ theme }) => theme.textColor};
     text-align: right;
     padding: 0 12px;
   }

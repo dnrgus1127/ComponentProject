@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { useSetting } from "../../CustomHook.js/SettingProvider";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
+import { HexControll } from "../../globalFunc/HexColorControll";
 
 // * styled-component is under the function component
 
@@ -10,6 +11,13 @@ export default function Accordion() {
   const [expansionState, setExpansionState] = useState(false);
   const contentRef = useRef();
   const wrapRef = useRef();
+  // * inline style ////////////////////////////////
+  const panelStyle = { color: textColor, backgroundColor: bgColor };
+  const contentStyle = {
+    backgroundColor: HexControll(bgColor, 0.8),
+    color: textColor,
+  };
+  // * ////////////////////////////////////////////
 
   useEffect(() => {
     if (expansionState) {
@@ -20,9 +28,9 @@ export default function Accordion() {
   });
 
   return (
-    <Container fontSize={fontSize} textColor={textColor}>
-      <Panel bgColor={bgColor}>
-        <p>제목</p>
+    <Container fontSize={fontSize}>
+      <Panel style={panelStyle}>
+        <p>Title</p>
         <ExpansionIcon
           onClick={() => {
             if (expansionState) {
@@ -38,7 +46,7 @@ export default function Accordion() {
                 ? { transform: "rotate(-180deg)", transition: "0.3s all ease" }
                 : { transition: "0.3s all ease" }
             }
-            color='white'
+            color={textColor}
             size={fontSize > 14 ? fontSize : 14}
           />
         </ExpansionIcon>
@@ -46,11 +54,11 @@ export default function Accordion() {
 
       <SectionWrap ref={wrapRef} fontSize={fontSize}>
         <Content ref={contentRef}>
-          <Section>내용</Section>
-          <Section>내용</Section>
-          <Section>내용</Section>
-          <Section>내용</Section>
-          <Section>내용</Section>
+          <Section style={contentStyle}>Content</Section>
+          <Section style={contentStyle}>Content</Section>
+          <Section style={contentStyle}>Content</Section>
+          <Section style={contentStyle}>Content</Section>
+          <Section style={contentStyle}>Content</Section>
         </Content>
       </SectionWrap>
       {/* <Section>content</Section>
@@ -84,22 +92,18 @@ const Section = styled.div`
 
 const Content = styled.div``;
 
-const Panel = styled.div.attrs((props) => ({
-  style: { backgroundColor: `${props.bgColor}` },
-}))`
+const Panel = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
   background-color: #555555;
   border-radius: 8px;
-  & > p {
-    color: white;
-  }
+
   padding: 2% 4%;
 `;
 
 const SectionWrap = styled.div.attrs((props) => ({
-  style: { fontSize: `${props.fontSize * 0.75}px` },
+  style: { fontSize: `${props.fontSize * 0.75}px`, color: props.textColor },
 }))`
   width: 100%;
   height: 0px;
@@ -108,7 +112,7 @@ const SectionWrap = styled.div.attrs((props) => ({
 `;
 
 const Container = styled.div.attrs((props) => ({
-  style: { fontSize: `${props.fontSize}px`, color: props.textColor },
+  style: { fontSize: `${props.fontSize}px` },
 }))`
   width: 100%;
   height: 100%;
