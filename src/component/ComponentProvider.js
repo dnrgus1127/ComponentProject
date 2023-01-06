@@ -4,15 +4,10 @@ import { useSetting } from "../CustomHook.js/SettingProvider";
 import { PickedComponent } from "./PickedComponent";
 
 export default function ComponentProvider({ ComponentCode }) {
-  const { width, height, fontSize, textColor, bgColor } = useSetting();
+  const { width, height, textColor, bgColor } = useSetting();
 
   return (
-    <Container
-      width={width}
-      height={height}
-      fontSize={fontSize}
-      color={textColor}
-    >
+    <Container width={width} height={height} color={textColor}>
       <PickedComponent
         bgColor={bgColor}
         pickCode={ComponentCode}

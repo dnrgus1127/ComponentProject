@@ -1,10 +1,13 @@
 const commonTheme = {
   border: "#767676",
+  hoverColor: "grey",
 };
 
 export const lightTheme = {
   bgColor: "#e1dcd9",
   textColor: "black",
+  inputColor: "#d1ccc9",
+  complementaryColor: "white",
   ...commonTheme,
 };
 

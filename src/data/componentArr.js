@@ -1,1 +1,1 @@
-export const componentArr = ["Button", "Accordion"];
+export const componentArr = ["Button", "Accordion", "TextContents"];
